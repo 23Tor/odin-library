@@ -36,6 +36,10 @@ function displayLibrary() {
             <p>${book.genre}</p>
             <p>${book.pages} pages</p>
             <p>${book.read ? 'Read' : 'Not read'}</p>
+            <label>
+                <input type="checkbox" class="read-checkbox" ${book.read ? 'checked' : ''} onchange="toggleReadStatus(${book.id})">
+                Mark as read
+            </label>
         `;
         bookDetails.style.display = 'none'; // Hide the book details initially
         bookDiv.appendChild(bookDetails);
@@ -47,6 +51,17 @@ function displayLibrary() {
 
         libraryDiv.appendChild(bookDiv);
     });
+}
+
+function toggleReadStatus(bookId) {
+    // Find the book with the given id and toggle its 'read' status
+    const book = library.find(book => book.id === bookId);
+    if (book) {
+        book.read = !book.read;
+    }
+
+    // Re-display the library
+    displayLibrary();
 }
 document.querySelector('#book-form').addEventListener('submit', function(e) {
     e.preventDefault(); // Prevent the form from submitting normally
@@ -75,6 +90,9 @@ displayLibrary();
 
 let book1 = new Book("To Kill a Mockingbird", "Harper Lee", "Fiction", "img/to_kill_a_mockingbird.jpg", 324, false);
 addToLibrary(book1);
+
+let book2 = new Book("The Great Gatsby", "F. Scott Fitzgerald", "Fiction", "img/the_great_gatsby.jpg", 180, false);
+addToLibrary(book2);
 
 console.log(library);
 
