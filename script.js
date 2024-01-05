@@ -1,5 +1,5 @@
 class Book {
-    constructor(title, author, genre, cover, pages, read) { // Add the 'read' parameter to the constructor
+    constructor(title, author, genre, cover, pages, read) {
         this.title = title;
         this.author = author;
         this.genre = genre;
@@ -17,7 +17,7 @@ function addToLibrary(book) {
 
 function displayLibrary() {
     const libraryDiv = document.querySelector('.library');
-    libraryDiv.innerHTML = ''; // Clear the library div
+    libraryDiv.innerHTML = '';
 
     library.forEach(book => {
         const bookDiv = document.createElement('div');
@@ -41,10 +41,9 @@ function displayLibrary() {
                 Mark as read
             </label>
         `;
-        bookDetails.style.display = 'none'; // Hide the book details initially
+        bookDetails.style.display = 'none';
         bookDiv.appendChild(bookDetails);
 
-        // Show the book details when the cover image is clicked
         coverImage.addEventListener('click', () => {
             bookDetails.style.display = bookDetails.style.display === 'none' ? 'block' : 'none';
         });
@@ -54,38 +53,32 @@ function displayLibrary() {
 }
 
 function toggleReadStatus(bookId) {
-    // Find the book with the given id and toggle its 'read' status
     const book = library.find(book => book.id === bookId);
     if (book) {
         book.read = !book.read;
     }
 
-    // Re-display the library
     displayLibrary();
 }
-document.querySelector('#book-form').addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent the form from submitting normally
 
-    // Get the book details from the form
-    // Get the book details from the form
+document.querySelector('#book-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
     const title = document.querySelector('#title').value;
     const author = document.querySelector('#author').value;
     const genre = document.querySelector('#genre').value;
     const cover = document.querySelector('#cover').value;
     const pages = document.querySelector('#pages').value;
     const read = document.querySelector('#read').checked;
-    // Create a new book and add it to the library
+
     const book = new Book(title, author, genre, cover, pages, read);
     addToLibrary(book);
 
-    // Display the updated library
     displayLibrary();
 
-    // Clear the form
     e.target.reset();
 });
 
-// display the library
 displayLibrary();
 
 let book1 = new Book("To Kill a Mockingbird", "Harper Lee", "Fiction", "img/to_kill_a_mockingbird.jpg", 324, false);
@@ -96,5 +89,4 @@ addToLibrary(book2);
 
 console.log(library);
 
-// display the library
 displayLibrary();

@@ -1,3 +1,17 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    color: #555;
+}
+
+form {
+    margin: 10px;
+
+}
 .book-card {
     width: 200px;
     border: 1px solid #000;
@@ -23,5 +37,5 @@
 .library {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: left;
 }
